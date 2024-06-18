@@ -249,8 +249,37 @@ def random_if_else():
             ast.parse(f'''for i in range(5):
                 try:
                     {rd()}({rd()})
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    eval[({rd()})] 
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
+                    
                 except:
-                    {rd()} = "noi chung la bo may dep trai" ''')
+                    1-1
+                    2-1
+                    3-2
+                    4-5
+                    5-2-12-2 ''')
+
             ],
         orelse=[
             ast.Assign(
