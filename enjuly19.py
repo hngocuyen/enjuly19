@@ -1,10 +1,10 @@
 import ast
-import random
+
 import zlib
 import marshal
 import base64
 import bz2
-import re
+
 from pystyle import *
 
 
