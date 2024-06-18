@@ -12,20 +12,12 @@ from pystyle import *
 
 def _rd():
     return "".join(__import__("random").sample([chr(i) for i in range(97, 122)], k=5))
-def _rd1():
-    return "".join(__import__("random").sample([chr(i) for i in range(97, 122)], k=1))
-
-
-
 def rd():
     return "_" + "".join(
         __import__("random").sample([str(i) for i in range(1, 20)], k=2)
     )
-
-
 def randomint():
     return "".join(__import__("random").sample([str(i) for i in range(1, 20)], k=2))
-
 
 def _chrobf(x):
     return ord(x)+0xFF78FF
