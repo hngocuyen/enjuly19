@@ -1,3 +1,7 @@
+
+
+
+
 import sys
 import ast
 import random
@@ -7,7 +11,9 @@ import base64
 import bz2
 import re
 from pystyle import *
-
+if sys.version_info < (3, 10):
+    print("Install Python Version = 3.10 or > 3.10 To Use This Code ")
+    sys.exit()
 
 def _rd():
     return "".join(__import__("random").sample(
