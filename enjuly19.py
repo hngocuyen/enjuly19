@@ -7,21 +7,6 @@ import bz2
 import re
 from pystyle import *
 
-dark = Col.dark_gray
-light = Col.light_gray
-purple = Colors.StaticMIX((Col.purple, Col.blue))
-bpurple = Colors.StaticMIX((Col.purple, Col.blue, Col.blue))
-
-
-def p(text):
-    # sleep(0.05)
-    return print(stage(text))
-
-
-def stage(text: str, symbol: str = "", col1=light, col2=None) -> str:
-    if col2 is None:
-        col2 = light if symbol == "" else purple
-    return f""" {Col.Symbol(symbol, col1, dark)} {col2}{text}{Col.reset}"""
 
 
 def _rd():
@@ -325,7 +310,7 @@ def obf(code):
 
     j = ast_to_code(tbd)
     return j
-from pystyle import *
+
 dark = Col.dark_gray
 light = Col.light_gray
 purple = Colors.StaticMIX((Col.green, Col.yellow))
