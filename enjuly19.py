@@ -300,10 +300,10 @@ def splitbyte(j):
     return [bytes([b]) for b in j]
 
 
-def obf(code):
+def obf(code,k):
     tree = ast.parse(code)
     obfuscate(tree)
-    tbd = trycatch(tree.body, 1)
+    tbd = trycatch(tree.body, k)
 
     def ast_to_code(node):
         return ast.unparse(node)
@@ -392,10 +392,13 @@ method = input(" DO YOU WANT COMPILE? (y/n) : ")
 
 
 
-
+x = mode
 
 for i in range(mode):
-    code = obf(code)
+    if mode==3:
+        x = 2
+    code = obf(code,x)
+
 
 if method.upper() != "Y":
     code = var + code
@@ -476,5 +479,5 @@ cc = """
 """
 
 
-open("obf-" + _file, "w", encoding="utf8").write(str(cc + var + code))
+open("enjuly-" + _file, "w", encoding="utf8").write(str(cc + var + code))
 print(" Save in ", "enjuly-" + _file)
