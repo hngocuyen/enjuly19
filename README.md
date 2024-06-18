@@ -1,6 +1,8 @@
 # enjuly19
 999% powerfull ast obf by ngocuyencoder
 
+obf only for python3.10 and above
+
 UNOBF : 
 ```py
 print("hello")
