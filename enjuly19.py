@@ -1,3 +1,4 @@
+import sys
 import ast
 import random
 import zlib
@@ -5,22 +6,29 @@ import marshal
 import base64
 import bz2
 import re
-import sys
 from pystyle import *
 
 
-
 def _rd():
-    return "".join(__import__("random").sample([chr(i) for i in range(97, 122)], k=5))
+    return "".join(__import__("random").sample(
+        [chr(i) for i in range(97, 122)], k=5))
+
+
+def _rd1():
+    return "".join(__import__("random").sample(
+        [chr(i) for i in range(97, 122)], k=1))
+
+
 def rd():
-    return "_" + "".join(
-        __import__("random").sample([str(i) for i in range(1, 20)], k=2)
-    )
+    return "_" + "".join(__import__("random").sample([str(i) for i in range(1, 20)], k=2))
+
+
 def randomint():
     return "".join(__import__("random").sample([str(i) for i in range(1, 20)], k=2))
 
+
 def _chrobf(x):
-    return ord(x)+0xFF78FF
+    return ord(x) + 0xFF78FF
 
 
 def obfstr(v):
@@ -35,7 +43,6 @@ def obfstr(v):
             x.append(_chrobf(r[i]))
         _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))('19'))('07'))('2008')"""
         return _str_
-
 
 
 def obfint(v):
@@ -114,7 +121,7 @@ def {___import__}():
 {___import__}()
 def {_join}(july,*k):
     if k:
-        enjuly19 = '+'    
+        enjuly19 = '+'
         op = "+"
     else:
         enjuly19 = ''
@@ -138,21 +145,21 @@ if {obfint(True)}:
                     if 1<2:
                             b1 = 0xC0 | ({_argshexrun} >> 6)
                     b2 = 0x80 | ({_argshexrun} & 0x3F)
-                    return {_str}({_bytes}([b1, b2]),"")
+                    return {_str}({_bytes}([b1, b2]),"utf8")
         elif {_argshexrun} <= 0xFFFF:
                 b1 = 0xE0 | ({_argshexrun} >> 12)
                 if 2>1:
                     b2 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
                 b3 = 0x80 | ({_argshexrun} & 0x3F)
-                return {_str}({_bytes}([b1, b2, b3]),"")
-        else:   
+                return {_str}({_bytes}([b1, b2, b3]),"utf8")
+        else:
             b1 = 0xF0 | ({_argshexrun} >> 18)
             if 2==2:
                 b2 = 0x80 | (({_argshexrun} >> 12) & 0x3F)
             if 1<2<3:
                 b3 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
             b4 = 0x80 | ({_argshexrun} & 0x3F)
-            return {_str}({_bytes}([b1, b2, b3, b4]),"")
+            return {_str}({_bytes}([b1, b2, b3, b4]),"utf8")
     def _hex(j):
         {_argshexrun} = ''
         for _hex in j:
@@ -197,7 +204,9 @@ def obfuscate(node):
             if isinstance(v, list):
                 ar = []
                 for j in v:
-                    if isinstance(j, ast.Constant) and isinstance(j.value, str):
+                    if isinstance(
+                            j, ast.Constant) and isinstance(
+                            j.value, str):
                         ar.append(ast.parse(obfstr(j.value)).body[0].value)
                     elif isinstance(j, ast.Constant) and isinstance(j.value, int):
                         ar.append(ast.parse(obfint(j.value)).body[0].value)
@@ -206,9 +215,11 @@ def obfuscate(node):
                     elif isinstance(j, ast.AST):
                         ar.append(j)
                 if any(
-                    isinstance(elem, ast.Constant) and isinstance(elem.value, bool)
-                    for elem in v
-                ):
+                    isinstance(
+                        elem,
+                        ast.Constant) and isinstance(
+                        elem.value,
+                        bool) for elem in v):
                     setattr(i, f, v)
                 else:
                     setattr(i, f, ar)
@@ -233,8 +244,14 @@ def random_if_else():
                 col_offset=0,
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
                 value=ast.Constant(value=[[True], [False]], kind=None),
-            )
-        ],
+
+            ),
+            ast.parse(f'''for i in range(5):
+                try:
+                    {rd()}({rd()})
+                except:
+                    {rd()} = "noi chung la bo may dep trai" ''')
+            ],
         orelse=[
             ast.Assign(
                 lineno=0,
@@ -248,6 +265,7 @@ def random_if_else():
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
                 value=ast.Constant(value=[[4], [6]], kind=None),
             ),
+            
             ast.Assign(
                 lineno=0,
                 col_offset=0,
@@ -260,7 +278,7 @@ def random_if_else():
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
                 value=ast.Constant(value=[rd(), rd()], kind=None),
             ),
-            
+
             ast.Expr(
                 lineno=0,
                 col_offset=0,
@@ -348,8 +366,6 @@ def trycatch(body, loop):
     return ar
 
 
-
-
 def obf(code):
     tree = ast.parse(code)
     obfuscate(tree)
@@ -361,11 +377,11 @@ def obf(code):
     j = ast_to_code(tbd)
     return j
 
+
 dark = Col.dark_gray
 light = Col.light_gray
 purple = Colors.StaticMIX((Col.green, Col.yellow))
 bpurple = Colors.StaticMIX((Col.pink, Col.blue, Col.blue))
-
 
 
 text = f"""
@@ -410,20 +426,11 @@ banner = f"""
 """
 
 
-
-
-
-
 banner = Add.Add(text, banner, center=True)
 
 print(f'{purple} {banner}')
 
 
-
-
-
-
-    
 _file = input(" ENTER FILE: ")
 
 while True:
@@ -442,7 +449,6 @@ while True:
         pass
 
 method = input(" DO YOU WANT COMPILE? (y/n): ")
-
 
 
 checkver = f"""
@@ -469,12 +475,8 @@ author = f"""
 
 for i in range(mode):
     code = obf(code)
-
 if method.upper() != "Y":
     code = var + code
-
-
-
 else:
     code = ANTI_PYCDC + code
     code = marshal.dumps(compile(code, "", "exec"))
@@ -483,13 +485,13 @@ else:
     code = base64.b85encode(code)
     l = len(code)
     part1 = code[: l // 4]
-    part2 = code[l // 4 : l // 2]
-    part3 = code[l // 2 : 3 * l // 4]
-    part4 = code[3 * l // 4 :]
+    part2 = code[l // 4: l // 2]
+    part3 = code[l // 2: 3 * l // 4]
+    part4 = code[3 * l // 4:]
     _f = "for"
     _i = "in"
     _t = rd()
-    code = author+var+f"""
+    code = author + var + f"""
 def bytecode():
     ngocuyencoder = globals().update
     if True:
