@@ -409,4 +409,4 @@ finally:
 
 IF U ENABLE COMPILE 
 
-[https://github.com/hngocuyen/enjuly19/blob/main/example/obf/mode3ex.py]
+[https://github.com/hngocuyen/enjuly19/blob/main/example/obf/mode3compile.py]
