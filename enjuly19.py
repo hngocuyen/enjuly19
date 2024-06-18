@@ -1,16 +1,19 @@
 import ast
-
+import random
 import zlib
 import marshal
 import base64
 import bz2
-
+import re
 from pystyle import *
 
 
 
 def _rd():
     return "".join(__import__("random").sample([chr(i) for i in range(97, 122)], k=5))
+def _rd1():
+    return "".join(__import__("random").sample([chr(i) for i in range(97, 122)], k=1))
+
 
 
 def rd():
@@ -23,18 +26,27 @@ def randomint():
     return "".join(__import__("random").sample([str(i) for i in range(1, 20)], k=2))
 
 
+def _chrobf(x):
+    return ord(x)+0xFF78FF
+
+
 def obfstr(v):
     global _join
+    global _hexrun
     if v == "":
         return f"''"
     else:
-        r = list(v)[::-1]
-        _str_ = f"""(lambda {rd()} : {_join}({r})[::-{obfint(1)}])([True])"""
+        x = []
+        r = list(v)
+        for i in range(len(r)):
+            x.append(_chrobf(r[i]))
+        _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))(''))(''))('')"""
         return _str_
 
 
+
 def obfint(v):
-    return f"""{_int}({(v)}) if {_str}({_type}({_bool}({(v)}))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else {v}"""
+    return f"""hexlamfia({(v+0x7777)}) if {_str}({_type}({_bool}({(v)}))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else {v}"""
 
 
 def varsobf(v):
@@ -42,6 +54,7 @@ def varsobf(v):
 
 
 _join = "cmp"
+_lambda = "ㅤ"
 _int = "mov"
 _str = "ret"
 _bool = "cout"
@@ -121,6 +134,38 @@ def {_join}(july,*k):
         if not {__exx}:globals()['enjuly19_'] += (lambda : '')()
         enjuly19 += {_str}(enjuly19_);f = {obfint(True)}
     return enjuly19
+def hexlamfia(x):
+    return {_int}(x-0x7777)
+if {obfint(True)}:
+    def {_hexrun}({_argshexrun}):
+        {_argshexrun} = {_argshexrun}-0xFF78FF
+        if {_argshexrun} <= 0x7F:
+                    return {_str}({_bytes}([{_argshexrun}]),"utf8")
+        elif {_argshexrun} <= 0x7FF:
+                    if 1<2:
+                            b1 = 0xC0 | ({_argshexrun} >> 6)
+                    b2 = 0x80 | ({_argshexrun} & 0x3F)
+                    return {_str}({_bytes}([b1, b2]),"")
+        elif {_argshexrun} <= 0xFFFF:
+                b1 = 0xE0 | ({_argshexrun} >> 12)
+                if 2>1:
+                    b2 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
+                b3 = 0x80 | ({_argshexrun} & 0x3F)
+                return {_str}({_bytes}([b1, b2, b3]),"")
+        else:   
+            b1 = 0xF0 | ({_argshexrun} >> 18)
+            if 2==2:
+                b2 = 0x80 | (({_argshexrun} >> 12) & 0x3F)
+            if 1<2<3:
+                b3 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
+            b4 = 0x80 | ({_argshexrun} & 0x3F)
+            return {_str}({_bytes}([b1, b2, b3, b4]),"")
+    def _hex(j):
+        {_argshexrun} = ''
+        for _hex in j:
+            {_argshexrun} += ({_hexrun}(_hex))
+        return {_argshexrun}
+else:"enjuly19"
 """
 
 
@@ -207,8 +252,27 @@ def random_if_else():
                 lineno=0,
                 col_offset=0,
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[[True], [False]], kind=None),
+                value=ast.Constant(value=['ngocuyencoder', 'tronvietname'], kind=None),
             ),
+            ast.Assign(
+                lineno=0,
+                col_offset=0,
+                targets=[ast.Name(id=rd(), ctx=ast.Store())],
+                value=ast.Constant(value=[[4], [6]], kind=None),
+            ),
+            ast.Assign(
+                lineno=0,
+                col_offset=0,
+                targets=[ast.Name(id=rd(), ctx=ast.Store())],
+                value=ast.Constant(value=[2, 2], kind=None),
+            ),
+            ast.Assign(
+                lineno=0,
+                col_offset=0,
+                targets=[ast.Name(id=rd(), ctx=ast.Store())],
+                value=ast.Constant(value=[rd(), rd()], kind=None),
+            ),
+            
             ast.Expr(
                 lineno=0,
                 col_offset=0,
@@ -397,9 +461,9 @@ method = input(" DO YOU WANT COMPILE? (y/n) : ")
 for i in range(mode):
     code = obf(code)
 
-
 if method.upper() != "Y":
     code = var + code
+
 else:
     code = ANTI_PYCDC + code
     code = marshal.dumps(compile(code, "", "exec"))
@@ -415,36 +479,7 @@ else:
     _i = "in"
     _t = rd()
     code = f"""
-if {obfint(True)}:
-    def {_hexrun}({_argshexrun}):
-        {_argshexrun} = {_argshexrun}-0xFF78FF
-        if {_argshexrun} <= 0x7F:
-                    return {_str}({_bytes}([{_argshexrun}]),"utf8")
-        elif {_argshexrun} <= 0x7FF:
-                    if 1<2:
-                            b1 = 0xC0 | ({_argshexrun} >> 6)
-                    b2 = 0x80 | ({_argshexrun} & 0x3F)
-                    return {_str}({_bytes}([b1, b2]),"")
-        elif {_argshexrun} <= 0xFFFF:
-                b1 = 0xE0 | ({_argshexrun} >> 12)
-                if 2>1:
-                    b2 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
-                b3 = 0x80 | ({_argshexrun} & 0x3F)
-                return {_str}({_bytes}([b1, b2, b3]),"")
-        else:   
-            b1 = 0xF0 | ({_argshexrun} >> 18)
-            if 2==2:
-                b2 = 0x80 | (({_argshexrun} >> 12) & 0x3F)
-            if 1<2<3:
-                b3 = 0x80 | (({_argshexrun} >> 6) & 0x3F)
-            b4 = 0x80 | ({_argshexrun} & 0x3F)
-            return {_str}({_bytes}([b1, b2, b3, b4]),"")
-    def _hex(j):
-        {_argshexrun} = ''
-        for _hex in j:
-            {_argshexrun} += ({_hexrun}(_hex))
-        return {_argshexrun}
-else:"enjuly19"
+
 def bytecode():
     ngocuyencoder = globals().update
     if True:
@@ -476,6 +511,5 @@ cc = """
 
 """
 
-
-open("enjuly-" + _file, "w", encoding="utf8").write(str(cc + var + code))
+open("enjuly-" + _file, "w", encoding="utf8").write(str(cc + code))
 print(" Save in ", "enjuly-" + _file)
