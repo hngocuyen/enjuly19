@@ -40,7 +40,7 @@ def obfstr(v):
         r = list(v)
         for i in range(len(r)):
             x.append(_chrobf(r[i]))
-        _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))(''))(''))('')"""
+        _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))('19'))('07'))('2008')"""
         return _str_
 
 
@@ -360,8 +360,6 @@ def trycatch(body, loop):
     return ar
 
 
-def splitbyte(j):
-    return [bytes([b]) for b in j]
 
 
 def obf(code):
@@ -456,13 +454,37 @@ method = input(" DO YOU WANT COMPILE? (y/n) : ")
 
 
 
+import sys
+checkver = f"""
+import sys
+if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.version:
+    input("Your python version does not work on this code, please install python3.11")
+    __import__("sys").exit()
+"""
+author = f"""
 
+
+
+ㅤ = bool
+
+ㅤ(
+    ㅤ(
+        ㅤ(
+            ㅤ(
+                ([["ENJULY19"],["https://github.com/hngocuyen/enjuly19/"],["PYTHON"],3.11],[__import__("builtins").exec({checkver.encode()})])
+                )
+            )
+        )
+    )
+"""
 
 for i in range(mode):
     code = obf(code)
 
 if method.upper() != "Y":
     code = var + code
+
+
 
 else:
     code = ANTI_PYCDC + code
@@ -478,8 +500,7 @@ else:
     _f = "for"
     _i = "in"
     _t = rd()
-    code = f"""
-
+    code = author+var+f"""
 def bytecode():
     ngocuyencoder = globals().update
     if True:
@@ -511,5 +532,5 @@ cc = """
 
 """
 
-open("enjuly-" + _file, "w", encoding="utf8").write(str(cc + code))
+open("enjuly-" + _file, "w", encoding="utf8").write(str(code))
 print(" Save in ", "enjuly-" + _file)
