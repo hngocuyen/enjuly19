@@ -492,4 +492,4 @@ cc = """
 
 
 open("obf-" + _file, "w", encoding="utf8").write(str(cc + var + code))
-print(" Save in ", "obf-" + _file)
+print(" Save in ", "enjuly-" + _file)
