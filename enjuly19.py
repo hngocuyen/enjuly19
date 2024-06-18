@@ -5,6 +5,7 @@ import marshal
 import base64
 import bz2
 import re
+import sys
 from pystyle import *
 
 
@@ -169,20 +170,15 @@ else:"enjuly19"
 """
 
 
-antipycdc = ""
-
-for i in range(10000):
-    antipycdc += "1/int(0),"
-
-antipycdc = "try:ngocuyencoder=(" + antipycdc + ")\nexcept:pass"
-
 ANTI_PYCDC = f"""
 try:pass
 except:pass
 else:pass
-finally:pass
-{antipycdc}
 finally:int(2008-2006)
+try:
+    def ___(__, _: str, ngocuyen = True, deptrai = True) -> None:pass
+except:pass
+finally:pass
 """
 
 
@@ -436,25 +432,27 @@ print(f'{purple} {banner}')
 
 
     
-_file = input(" ENTER FILE : ")
+_file = input(" ENTER FILE: ")
+
 while True:
     try:
-        code = open(_file, "r", encoding="utf8").read()
+        with open(_file, "r", encoding="utf8") as file:
+            code = file.read()
         break
-    except:
-        _file = input(" ENTER FILE AGAIN (file not found) : ")
+    except FileNotFoundError:
+        _file = input(" ENTER FILE AGAIN (file not found): ")
+
 while True:
     try:
-        mode = int(input(" ENTER MODE : "))
+        mode = int(input(" ENTER MODE: "))
         break
     except ValueError:
-        mode = int(input(" ENTER MODE (PLS ENTER INTEGER) : "))
+        pass
 
-method = input(" DO YOU WANT COMPILE? (y/n) : ")
+method = input(" DO YOU WANT COMPILE? (y/n): ")
 
 
 
-import sys
 checkver = f"""
 import sys
 if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.version:
@@ -462,16 +460,15 @@ if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.ve
     __import__("sys").exit()
 """
 author = f"""
-
-
-
-ㅤ = bool
-
-ㅤ(
-    ㅤ(
-        ㅤ(
-            ㅤ(
-                ([["ENJULY19"],["https://github.com/hngocuyen/enjuly19/"],["PYTHON"],3.11],[__import__("builtins").exec({checkver.encode()})])
+((
+    ((([["ENJULY19"],
+    ["https://github.com/hngocuyen/enjuly19/"],
+    ["PYTHON"],
+    3.11
+    ],
+    [__import__("builtins").exec(
+    {checkver.encode()})
+    ])
                 )
             )
         )
@@ -528,9 +525,5 @@ birth(
 _19(
 _en+_july+_birth+__19)))))
 """
-cc = """
-
-"""
-
 open("enjuly-" + _file, "w", encoding="utf8").write(str(code))
 print(" Save in ", "enjuly-" + _file)
