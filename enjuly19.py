@@ -1,7 +1,3 @@
-
-
-
-
 import sys
 import ast
 import random
@@ -310,8 +306,8 @@ def obfuscate(node):
 
 
 def random_if_else():
-
-    variables = [rd(), rd(), rd()]  # Danh sách các biến
+    global sl
+    variables = [rd() for i in range(sl)] 
     code_blocks = []
     for var in variables:
         code_blocks.append(
@@ -522,7 +518,7 @@ while True:
         break
     except ValueError:
         pass
-
+sl = int(input(" COUNT VAR U WANT SPAM : "))
 method = input(" DO YOU WANT COMPILE? (y/n): ")
 
 
