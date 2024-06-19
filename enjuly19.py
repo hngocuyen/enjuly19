@@ -50,10 +50,26 @@ def obfstr(v):
 
         _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))('19'))('07'))('2008')"""
         return _str_
+def _byte(v):
+    byte_array = bytearray()
+    byte_array.extend(v.to_bytes((v.bit_length() + 7) // 8, 'big'))
+    return b" enjuly/ "+bytes(byte_array)
 
 
 def obfint(v):
-    return f"""hexlamfia({(v+0x7777)}) if {_str}({_type}({_bool}({(v)}))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else {v}"""
+    n = rd()
+    if 'bool' in str(type(v)):
+        if str(v)=='True':
+            return f'(lambda: (lambda {n}: {n} + (lambda : hexlamfia({(1+0x7777)}))())(0) == 1)()'
+        else:
+            return f'(lambda: (lambda {n}: {n} - (lambda : hexlamfia(({(1+0x7777)} ) ) )())(0) == 1)()'
+    else:
+        #return f"""hexlamfia({(v+0x7777)}) if {_str}({_type}({_bool}(hexlamfia({(v+0x7777)})))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else hexlamfia({v+0x7777})"""
+        #return f"""(lambda {rd()} : hexlamfia({(v+0x7777)})("datchuche")"""
+        #return f"""(lambda : hexlamfia({(v+0x7777)})//eval({obfstr('1')}))()"""
+        #print(fr""" unhexlify('{_byte(int(v))}') """)
+        #return fr"""(lambda : """
+        return f'(lambda: enjl({_byte(int(v))}))()'
 
 
 def varsobf(v):
@@ -95,7 +111,7 @@ _temp = rd()
 _temp1 = rd()
 _wt = rd()
 _exp = rd()
-var = rf"""
+var = fr"""
 def {_bool}():
     globals()['{_bool}'] = {varsobf('bool')}
     bool(bool(bool(19)))
@@ -145,6 +161,15 @@ def {_join}(july,*k):
     return enjuly19
 def hexlamfia(x):
     return {_int}(x-0x7777)
+def enjl(e):
+    br = bytearray(e[len(b" enjuly/ "):])
+    e = 'big'
+    if e == 'big' and br[0] & 0x80:
+        br = bytearray(b'\xFF' * (len(br) - len(b" enjuly/ ")) + br)
+    r = 0
+    for b in br:
+        r = r * 256 + b
+    return r
 if {obfint(True)}:
     def {_hexrun}({_argshexrun}):
         {_argshexrun} = {_argshexrun}-0xFF78FF
@@ -283,42 +308,34 @@ def obfuscate(node):
                 setattr(i, f, fm(v))
 
 
-def random_if_else():
-    return ast.If(
-        test=ast.Compare(
-            left=ast.Constant(value=False, kind=None),
-            ops=[ast.Lt()],
-            comparators=[ast.Constant(value=True, kind=None)],
-        ),
-        body=[
-            ast.Assign(
-                lineno=0,
-                col_offset=0,
-                targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[[True], [False]], kind=None),
 
-            ),
-            ast.parse(txp)
-            ],
-        orelse=[
-            ast.Assign(
+def random_if_else():
+
+    variables = [rd(), rd(), rd()]  # Danh sách các biến
+    code_blocks = []
+    for var in variables:
+        code_blocks.append(
+            ast.If(
+                test=ast.Compare(
+                    left=ast.Constant(value=int(randomint()), kind=None),
+                    ops=[ast.Lt()],
+                    comparators=[ast.Constant(value=int(randomint()), kind=None)],
+                ),
+                body=[
+
+
+                            ast.Assign(
                 lineno=0,
                 col_offset=0,
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=['ngocuyencoder', 'tronvietname'], kind=None),
-            ),
-            ast.Assign(
-                lineno=0,
-                col_offset=0,
-                targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[[4], [6]], kind=None),
+                value=ast.Constant(value=[[randomint()], [randomint()]], kind=None),
             ),
             
             ast.Assign(
                 lineno=0,
                 col_offset=0,
                 targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[2, 2], kind=None),
+                value=ast.Constant(value=[randomint(), randomint()], kind=None),
             ),
             ast.Assign(
                 lineno=0,
@@ -327,25 +344,32 @@ def random_if_else():
                 value=ast.Constant(value=[rd(), rd()], kind=None),
             ),
 
-            ast.Expr(
-                lineno=0,
-                col_offset=0,
-                value=ast.Call(
-                    func=ast.Name(id=__bool, ctx=ast.Load()),
-                    args=[ast.Constant(value=[False], kind=None)],
-                    keywords=[],
-                ),
-            ),
-        ],
-    )
+                    ast.Assign(
+                        lineno=0,
+                        col_offset=0,
+                        targets=[ast.Name(id=var, ctx=ast.Store())],
+                        value=ast.Constant(value=randomint(), kind=None),
+                    )
+                ],
+                orelse=[]
+            )
+        )
 
+    return code_blocks
+
+import ast
 
 def random_match_case():
+
+    # Define the variables
+    var1 = ast.Constant(value=42, kind=None)  # Example value for var1
+    var2 = ast.Constant(value=42, kind=None)  # Example value for var2
+    
     return ast.Match(
         subject=ast.Compare(
-            left=ast.Constant(value=False, kind=None),
-            ops=[ast.Lt()],
-            comparators=[ast.Constant(value=True, kind=None)],
+            left=var1,
+            ops=[ast.Eq()],
+            comparators=[var2],
         ),
         cases=[
             ast.match_case(
@@ -355,7 +379,7 @@ def random_match_case():
                         lineno=0,
                         col_offset=0,
                         targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                        value=ast.Constant(value=[[True], [False]], kind=None),
+                        value=ast.Constant(value=[rd(), rd()], kind=None),
                     )
                 ],
             ),
@@ -372,8 +396,8 @@ def random_match_case():
                         lineno=0,
                         col_offset=0,
                         value=ast.Call(
-                            func=ast.Name(id=_rd(), ctx=ast.Load()),
-                            args=[ast.Constant(value=[False], kind=None)],
+                            func=ast.Name(id=__bool, ctx=ast.Load()),
+                            args=[ast.Constant(value=[rd()], kind=None)],
                             keywords=[],
                         ),
                     ),
