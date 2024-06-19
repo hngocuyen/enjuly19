@@ -47,6 +47,7 @@ def obfstr(v):
         r = list(v)
         for i in range(len(r)):
             x.append(_chrobf(r[i]))
+
         _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))('19'))('07'))('2008')"""
         return _str_
 
@@ -92,6 +93,8 @@ __bool = rd()
 __exx = rd()
 _temp = rd()
 _temp1 = rd()
+_wt = rd()
+_exp = rd()
 var = rf"""
 def {_bool}():
     globals()['{_bool}'] = {varsobf('bool')}
@@ -185,7 +188,50 @@ try:
 except:pass
 finally:pass
 """
+txp = f"""
+for i in range(5):
+                try:
+                    {rd()}()()()()()({rd()}()()()()())
+                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
+                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
+                    eval[({rd()}()()()()())] 
+                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
+                    if 1<2:
 
+                        if 2<6:
+
+                            if int(2)>int(1):
+
+                                if 8>4: 
+
+
+                                    if 9<1:
+
+
+
+                                        [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]  
+                except:
+                    {rd()} = 1-1
+
+                    {rd()} = 2-1
+
+                    {rd()} = 3-2
+
+                    {rd()} = 4-5
+
+                    {rd()} = 5-2-12-2 
+
+
+                {_wt} = 0
+                while {_wt} != 2:
+                    {_wt} += 1
+                    try:
+                        eval("0/0")
+                    except ZeroDivisionError as {_exp}:
+                        if {_exp}.args[0] == {obfint(100)}:
+                            eval("str('dat')")
+
+"""
 
 def fm(node: ast.JoinedStr) -> ast.Call:
     return ast.Call(
@@ -252,40 +298,7 @@ def random_if_else():
                 value=ast.Constant(value=[[True], [False]], kind=None),
 
             ),
-            ast.parse(f'''for i in range(5):
-                try:
-                    {rd()}({rd()})
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    eval[({rd()})] 
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    [{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()},{rd()}]
-                    
-                except:
-                    {rd()} = 1-1
-                    {rd()} = 2-1
-                    {rd()} = 3-2
-                    {rd()} = 4-5
-                    {rd()} = 5-2-12-2 ''')
-
+            ast.parse(txp)
             ],
         orelse=[
             ast.Assign(
@@ -374,9 +387,12 @@ def trycatch(body, loop):
     ar = []
     for x in body:
         j = x
-        for _ in range(loop):
+        for _ in range(1): #use 2 if u want rip 
             j = ast.Try(
-                body=[random_match_case()],
+                body=[random_match_case(),
+
+
+                ],
                 handlers=[
                     ast.ExceptHandler(
                         type=ast.Name(id="MemoryError", ctx=ast.Load()),
@@ -508,6 +524,7 @@ author = f"""
     )
 """
 
+
 for i in range(mode):
     code = obf(code)
 if method.upper() != "Y":
@@ -547,12 +564,15 @@ _en  {'  '* 999}={part1}
 _july  {'  '* 999}={part2}
 _birth  {'  '* 999}={part3}
 __19  {'  '* 999}={part4}
-ngocuyencoder(
-en(
-july(
-birth(
-_19(
-_en+_july+_birth+__19)))))
+try:
+    ngocuyencoder(
+    en(
+    july(
+    birth(
+    _19(
+    _en+_july+_birth+__19)))))
+except Exception as e:
+    print(e)
 """
 open("enjuly-" + _file, "w", encoding="utf8").write(str(code))
 print(" Save in ", "enjuly-" + _file)
