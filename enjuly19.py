@@ -525,7 +525,7 @@ method = input(" DO YOU WANT COMPILE? (y/n): ")
 checkver = f"""
 import sys
 if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.version:
-    input("Your python version does not work on this code, please install python{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]})
+    input("Your python version does not work on this code, please install python{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}")
     __import__("sys").exit()
 """
 author = f"""
