@@ -1,3 +1,7 @@
+
+
+
+
 import sys
 import ast
 import random
@@ -44,13 +48,12 @@ def obfstr(v):
         for i in range(len(r)):
             x.append(_chrobf(r[i]))
 
-        _str_ = f"""(lambda {rd()} : (lambda {rd()} : (lambda {rd()} : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))('19'))('07'))('2008')"""
+        _str_ = f"""(lambda  : (lambda : (lambda : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))())())()"""
         return _str_
 def _byte(v):
     byte_array = bytearray()
     byte_array.extend(v.to_bytes((v.bit_length() + 7) // 8, 'big'))
-    return b" enjuly/ "+bytes(byte_array)
-
+    return b"enjuly19/" + byte_array
 
 def obfint(v):
     n = rd()
@@ -65,30 +68,30 @@ def obfint(v):
         #return f"""(lambda : hexlamfia({(v+0x7777)})//eval({obfstr('1')}))()"""
         #print(fr""" unhexlify('{_byte(int(v))}') """)
         #return fr"""(lambda : """
-        return f'(lambda: enjl({_byte(int(v))}))()'
+        return f'(lambda: c2h6({_byte(int(v))}))()'
 
 
 def varsobf(v):
     return f"""({(v)}) if bool(bool(bool({(v)}))) < bool(type(int({randomint()})>int({randomint()})<int({randomint()})>int({randomint()}))) and bool(str(str({randomint()})>int({randomint()})<int({randomint()})>int({randomint()}))) > 2 else {v}"""
 
 
-_join = "cmp"
-_lambda = "ㅤ"
-_int = "mov"
-_str = "ret"
-_bool = "cout"
-_type = "endl"
-_bytes = "add"
-_vars = "sub"
-_ip = "add"
+_join = "h2o"
+_lambda = "ᅠ"
+_int = "h2so4"
+_str = "co2"
+_bool = "mol"
+_type = "feo2"
+_bytes = "feso4"
+_vars = "agno3"
+_ip = "hno3"
 ngoac = "{"
 _ngoac = "}"
-___import__ = "_break"
-_movdiv = "_movdiv"
-_hexrun = "ENJULY19"
-_argshexrun = "hex"
-
-
+___import__ = "ch2oh4p2so4"
+_movdiv = "h2"
+_hexrun = "o2"
+_argshexrun = "h2so3"
+__print = r"tryᅠ"
+__input = r"exceptᅠ"
 def unicodeobf(x):
     b = []
     for i in x:
@@ -107,39 +110,19 @@ _temp = rd()
 _temp1 = rd()
 _wt = rd()
 _exp = rd()
+
 var = fr"""
-def {_bool}():
-    globals()['{_bool}'] = {varsobf('bool')}
-    bool(bool(bool(19)))
-def {_str}():
-    globals()['{_str}'] =  {varsobf('str')}
-    str(str(str(7)))
-def {_type}():
-    globals()['{_type}'] =  {varsobf('type')}
-    bool(str(float(int(str(int(str(2008)))))))
-def {_int}():
-    globals()['{_int}'] =  {varsobf('int')}
-    float(int(str(int(str(19072008)))))
-def {_bytes}():
-    globals()['{_bytes}'] =  {varsobf('bytes')}
-    float(int(str(int(str(19072008)))))
-def {_vars}():
-    globals()['{_vars}'] =  {varsobf('vars')}
-    float(int(str(int(str(19072008)))))
-def {_movdiv}():
-    globals()['{_movdiv}'] =  {varsobf('callable')}
-    float(int(str(int(str(19072008)))))
-def {___import__}():
-    globals()['{___import__}'] =  {varsobf('__import__')}
-    float(int(str(int(str(19072008)))))
-{_bool}()
-{_str}()
-{_type}()
-{_int}()
-{_bytes}()
-{_vars}()
-{_movdiv}()
-{___import__}()
+
+globals()['{_bool}'] = {varsobf('bool')}
+globals()['{_str}'] =  {varsobf('str')}
+globals()['{_type}'] =  {varsobf('type')}
+globals()['{_int}'] =  {varsobf('int')}
+globals()['{_bytes}'] =  {varsobf('bytes')}
+globals()['{_vars}'] =  {varsobf('vars')}
+globals()['{_movdiv}'] =  {varsobf('callable')}
+globals()['{___import__}'] =  {varsobf('__import__')}
+globals()['tryᅠ'] =  {varsobf('print')}
+globals()['exceptᅠ'] =  {varsobf('input')}
 def {_join}(july,*k):
     if k:
         enjuly19 = '+'
@@ -157,11 +140,8 @@ def {_join}(july,*k):
     return enjuly19
 def hexlamfia(x):
     return {_int}(x-0x7777)
-def enjl(e):
-    br = bytearray(e[len(b" enjuly/ "):])
-    e = 'big'
-    if e == 'big' and br[0] & 0x80:
-        br = bytearray(b'\xFF' * (len(br) - len(b" enjuly/ ")) + br)
+def c2h6(e):
+    br = bytearray(e[len(b"enjuly19/"):])
     r = 0
     for b in br:
         r = r * 256 + b
@@ -210,47 +190,47 @@ except:pass
 finally:pass
 """
 txp = f"""
-for i in range(5):
+for i in range({obfint(1)}):
                 try:
                     {rd()}()()()()()({rd()}()()()()())
                     [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
                     [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
                     eval[({rd()}()()()()())] 
                     [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
-                    if 1<2:
+                    if {obfint(1)}<{obfint(2)}:
 
-                        if 2<6:
+                        if {obfint(1)}<{obfint(2)}:
 
-                            if int(2)>int(1):
+                            if {obfint(randomint())}<{obfint(randomint())}:
 
-                                if 8>4: 
+                                if {obfint(randomint())}<{obfint(randomint())}:
 
 
-                                    if 9<1:
+                                    if {obfint(randomint())}<{obfint(randomint())}:
 
 
 
                                         [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]  
                 except:
-                    {rd()} = 1-1
+                    {rd()} = {obfint(1)}
 
-                    {rd()} = 2-1
+                    {rd()} = {obfint(2)}
 
-                    {rd()} = 3-2
+                    {rd()} = {obfint(3)}
 
-                    {rd()} = 4-5
+                    {rd()} = {obfint(4)}
 
-                    {rd()} = 5-2-12-2 
+                    {rd()} = {obfint(5)}
 
 
                 {_wt} = 0
                 while {_wt} != 2:
                     {_wt} += 1
                     try:
-                        eval("0/0")
+                        {_str}("0/0")
                     except ZeroDivisionError as {_exp}:
                         if {_exp}.args[0] == {obfint(100)}:
-                            eval("str('dat')")
+                            {_str}({obfstr("str('dat')")})
 
 """
 
@@ -268,7 +248,6 @@ def fm(node: ast.JoinedStr) -> ast.Call:
         keywords=[],
     )
 
-
 def obfuscate(node):
     for i in ast.walk(node):
         if isinstance(i, ast.Global):
@@ -277,36 +256,48 @@ def obfuscate(node):
             if isinstance(v, list):
                 ar = []
                 for j in v:
-                    if isinstance(
-                            j, ast.Constant) and isinstance(
-                            j.value, str):
-                        ar.append(ast.parse(obfstr(j.value)).body[0].value)
-                    elif isinstance(j, ast.Constant) and isinstance(j.value, int):
-                        ar.append(ast.parse(obfint(j.value)).body[0].value)
-                    elif isinstance(j, ast.JoinedStr):
-                        ar.append(fm(j))
-                    elif isinstance(j, ast.AST):
+                    try:
+                        if isinstance(j, ast.Constant) and isinstance(j.value, str):
+                            ar.append(ast.parse(obfstr(j.value)).body[0].value)
+                        elif isinstance(j, ast.Constant) and isinstance(j.value, int):
+                            ar.append(ast.parse(obfint(j.value)).body[0].value)
+                        elif isinstance(j, ast.JoinedStr):
+                            ar.append(fm(j))
+                        elif isinstance(j, ast.AST):
+                            ar.append(j)
+                    except Exception as e:
+                        print(f"Error processing node {j}: {e}")
                         ar.append(j)
-                if any(
-                    isinstance(
-                        elem,
-                        ast.Constant) and isinstance(
-                        elem.value,
-                        bool) for elem in v):
-                    setattr(i, f, v)
-                else:
-                    setattr(i, f, ar)
-            elif isinstance(v, ast.Constant) and isinstance(v.value, str):
-                setattr(i, f, ast.parse(obfstr(v.value)).body[0].value)
-            elif isinstance(v, ast.Constant) and isinstance(v.value, int):
-                setattr(i, f, ast.parse(obfint(v.value)).body[0].value)
-            elif isinstance(v, ast.JoinedStr):
-                setattr(i, f, fm(v))
-
-
-
+                setattr(i, f, ar)
+            else:
+                try:
+                    if isinstance(v, ast.Constant) and isinstance(v.value, str):
+                        setattr(i, f, ast.parse(obfstr(v.value)).body[0].value)
+                    elif isinstance(v, ast.Constant) and isinstance(v.value, int):
+                        setattr(i, f, ast.parse(obfint(v.value)).body[0].value)
+                    elif isinstance(v, ast.JoinedStr):
+                        setattr(i, f, fm(v))
+                except Exception as e:
+                    print(f"Error processing field {f} with value {v}: {e}")
+def rename_function(node, ol, nn):
+    for i in ast.walk(node):
+        if isinstance(i, ast.FunctionDef) and i.name == ol:
+            i.name = nn
+        elif isinstance(i, ast.Attribute) and isinstance(i.value, ast.Name) and i.value.id == ol:
+            i.value.id = nn
+        elif isinstance(i, ast.Call) and isinstance(i.func, ast.Name) and i.func.id == ol:
+            i.func.id = nn
+        elif isinstance(i, ast.Name) and i.id == ol:
+            i.id = nn
+    return node
 def random_if_else():
     global sl
+    global moreobf
+    global txp
+    if moreobf.upper() == "Y":
+        txp = txp
+    else:
+        txp = ""
     variables = [rd() for i in range(sl)] 
     code_blocks = []
     for var in variables:
@@ -318,15 +309,7 @@ def random_if_else():
                     comparators=[ast.Constant(value=int(randomint()), kind=None)],
                 ),
                 body=[
-
-
-                            ast.Assign(
-                lineno=0,
-                col_offset=0,
-                targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[[randomint()], [randomint()]], kind=None),
-            ),
-            
+                ast.parse(txp),
             ast.Assign(
                 lineno=0,
                 col_offset=0,
@@ -352,15 +335,9 @@ def random_if_else():
         )
 
     return code_blocks
-
-import ast
-
 def random_match_case():
-
-    # Define the variables
-    var1 = ast.Constant(value=42, kind=None)  # Example value for var1
-    var2 = ast.Constant(value=42, kind=None)  # Example value for var2
-    
+    var1 = ast.Constant(value=randomint(), kind=None)
+    var2 = ast.Constant(value=randomint(), kind=None)
     return ast.Match(
         subject=ast.Compare(
             left=var1,
@@ -374,8 +351,13 @@ def random_match_case():
                     ast.Assign(
                         lineno=0,
                         col_offset=0,
-                        targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                        value=ast.Constant(value=[rd(), rd()], kind=None),
+                        targets=[],
+                        value=[ast.Raise(
+                    exc=ast.Call(
+                        func=ast.Name(id="MemoryError", ctx=ast.Load()),
+                        args=[],
+                        keywords=[ast.Str(s=[True])],
+                    ),)],
                     )
                 ],
             ),
@@ -392,7 +374,7 @@ def random_match_case():
                         lineno=0,
                         col_offset=0,
                         value=ast.Call(
-                            func=ast.Name(id=__bool, ctx=ast.Load()),
+                            func=ast.Name(id=_str, ctx=ast.Load()),
                             args=[ast.Constant(value=[rd()], kind=None)],
                             keywords=[],
                         ),
@@ -407,10 +389,9 @@ def trycatch(body, loop):
     ar = []
     for x in body:
         j = x
-        for _ in range(1): #use 2 if u want rip 
+        for _ in range(2): #use 2 if u want rip 
             j = ast.Try(
                 body=[random_match_case(),
-
 
                 ],
                 handlers=[
@@ -420,8 +401,8 @@ def trycatch(body, loop):
                         body=[j],
                     )
                 ],
-                orelse=[],
-                finalbody=[random_if_else()],
+                orelse=[random_if_else()],
+                finalbody=[],
             )
             j.body.append(
                 ast.Raise(
@@ -438,13 +419,15 @@ def trycatch(body, loop):
 
 
 def obf(code):
-    tree = ast.parse(code)
+    def ps(x):
+        return ast.parse(x)
+    code = rename_function(ps(code),"print",__print)
+    code = rename_function(ps(code),"input",__input)
+    tree = ps(code)
     obfuscate(tree)
     tbd = trycatch(tree.body, 1)
-
     def ast_to_code(node):
         return ast.unparse(node)
-
     j = ast_to_code(tbd)
     return j
 
@@ -503,29 +486,36 @@ print(f'{purple} {banner}')
 
 
 _file = input(" ENTER FILE: ")
-
+print()
 while True:
     try:
         with open(_file, "r", encoding="utf8") as file:
             code = file.read()
         break
     except FileNotFoundError:
+        print()
         _file = input(" ENTER FILE AGAIN (file not found): ")
+        print()
 
 while True:
     try:
         mode = int(input(" ENTER MODE: "))
+        print()
         break
     except ValueError:
         pass
 sl = int(input(" COUNT VAR U WANT SPAM : "))
+
+print()
+moreobf = input(" DO YOU WANT MORE OBF? (y/n): ")
+print()
 method = input(" DO YOU WANT COMPILE? (y/n): ")
 
 
 checkver = f"""
 import sys
 if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.version:
-    input("Your python version does not work on this code, please install python{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}")
+    input("Your python version does not work on this code, please install {sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}")
     __import__("sys").exit()
 """
 author = f"""
@@ -547,6 +537,8 @@ author = f"""
 
 for i in range(mode):
     code = obf(code)
+# nah im lazy ast to detect print
+
 if method.upper() != "Y":
     code = var + code
 else:
