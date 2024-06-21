@@ -59,13 +59,13 @@ def obfint(v):
     n = rd()
     if 'bool' in str(type(v)):
         if str(v)=='True':
-            return f'(lambda: (lambda {n}: {n} + (lambda : hexlamfia({(1+0x7777)}))())(0) == 1)()'
+            return f'(lambda: (lambda {n}: {n} + (lambda : H2SbF7({(1+0x7777)}))())(0) == 1)()'
         else:
-            return f'(lambda: (lambda {n}: {n} - (lambda : hexlamfia(({(1+0x7777)} ) ) )())(0) == 1)()'
+            return f'(lambda: (lambda {n}: {n} - (lambda : H2SbF7(({(1+0x7777)} ) ) )())(0) == 1)()'
     else:
-        #return f"""hexlamfia({(v+0x7777)}) if {_str}({_type}({_bool}(hexlamfia({(v+0x7777)})))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else hexlamfia({v+0x7777})"""
-        #return f"""(lambda {rd()} : hexlamfia({(v+0x7777)})("datchuche")"""
-        #return f"""(lambda : hexlamfia({(v+0x7777)})//eval({obfstr('1')}))()"""
+        #return f"""H2SbF7({(v+0x7777)}) if {_str}({_type}({_bool}(H2SbF7({(v+0x7777)})))) == {_str}({_type}({_int}({randomint()})>{_int}({randomint()})<{_int}({randomint()})>{_int}({randomint()}))) else H2SbF7({v+0x7777})"""
+        #return f"""(lambda {rd()} : H2SbF7({(v+0x7777)})("datchuche")"""
+        #return f"""(lambda : H2SbF7({(v+0x7777)})//eval({obfstr('1')}))()"""
         #print(fr""" unhexlify('{_byte(int(v))}') """)
         #return fr"""(lambda : """
         return f'(lambda: c2h6({_byte(int(v))}))()'
@@ -138,7 +138,7 @@ def {_join}(july,*k):
         if not {__exx}:globals()['enjuly19_'] += (lambda : '')()
         enjuly19 += {_str}(enjuly19_);f = {obfint(True)}
     return enjuly19
-def hexlamfia(x):
+def H2SbF7(x):
     return {_int}(x-0x7777)
 def c2h6(e):
     br = bytearray(e[len(b"enjuly19/"):])
@@ -189,50 +189,183 @@ try:
 except:pass
 finally:pass
 """
-txp = f"""
-for i in range({obfint(1)}):
-                try:
-                    {rd()}()()()()()({rd()}()()()()())
-                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
-                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
-                    eval[({rd()}()()()()())] 
-                    [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]
-                    if {obfint(1)}<{obfint(2)}:
 
-                        if {obfint(1)}<{obfint(2)}:
+import ast
+def _moreobf(tree):
+    import random
 
-                            if {obfint(randomint())}<{obfint(randomint())}:
+    def rd():
+        return str(random.randint(0x1E000000000, 0x7E000000000))
 
-                                if {obfint(randomint())}<{obfint(randomint())}:
+    def junk(en, max_value):
+        cases = []
+        line = max_value + 1
+        for i in range(random.randint(1, 5)):
+            case_name = "__"+rd()
+            case_body = [
+                ast.If(
+                    test=ast.Compare(
+                        left=ast.Subscript(
+                            value=ast.Attribute(
+                                value=ast.Name(id=en), 
+                                attr='args'
+                            ), 
+                            slice=ast.Constant(value=0)
+                        ), 
+                        ops=[ast.Eq()], 
+                        comparators=[ast.Constant(value=line)]
+                    ), 
+                    body=[
+                        ast.Assign(
+                            targets=[ast.Name(id=case_name)], 
+                            value=ast.Constant(value=random.randint(0xFFFFF, 0xFFFFFFFFFFFF)), 
+                            lineno=None
+                        )
+                    ], 
+                    orelse=[]
+                )
+            ]
+            cases.extend(case_body)
+            line += 1
+        return cases
+
+    def bl(body):
+        var = "__"+rd()
+        en = "__"+rd()
+
+        tb = [
+            ast.AugAssign(
+                target=ast.Name(id=var), 
+                op=ast.Add(), 
+                value=ast.Constant(value=1)
+            ),
+            ast.Try(
+                body=[
+                    ast.Raise(
+                        exc=ast.Call(func=ast.Name(id='MemoryError'), 
+                                     args=[ast.Name(id=var)], 
+                                     keywords=[])
+                    )
+                ],
+                handlers=[
+                    ast.ExceptHandler(
+                        type=ast.Name(id='MemoryError'), 
+                        name=en, 
+                        body=[]
+                    )
+                ],
+                orelse=[],
+                finalbody=[]
+            )
+        ]
+        
+        for i in body:
+            tb[1].handlers[0].body.append(
+                ast.If(
+                    test=ast.Compare(
+                        left=ast.Subscript(
+                            value=ast.Attribute(
+                                value=ast.Name(id=en), 
+                                attr='args'
+                            ), 
+                            slice=ast.Constant(value=0)
+                        ), 
+                        ops=[ast.Eq()], 
+                        comparators=[ast.Constant(value=1)]
+                    ), 
+                    body=[i], 
+                    orelse=[]
+                )
+            )
+        
+        tb[1].handlers[0].body.extend(junk(en, len(body) + 1))
+        
+        node = ast.Assign(
+            targets=[ast.Name(id=var)], 
+            value=ast.Constant(value=0), 
+            lineno=None
+        )
+        
+        return [node] + tb
+
+    def _bl(node):
+        olb = node.body
+
+        var = "__"+rd()
+        en = "__"+rd()
+
+        tb = [
+            ast.AugAssign(
+                target=ast.Name(id=var), 
+                op=ast.Add(), 
+                value=ast.Constant(value=1)
+            ),
+            ast.Try(
+                body=[
+                    ast.Raise(
+                        exc=ast.Call(func=ast.Name(id='MemoryError'), 
+                                     args=[ast.Name(id=var)], 
+                                     keywords=[])
+                    )
+                ],
+                handlers=[
+                    ast.ExceptHandler(
+                        type=ast.Name(id='MemoryError'), 
+                        name=en, 
+                        body=[]
+                    )
+                ],
+                orelse=[],
+                finalbody=[]
+            )
+        ]
+        for i in olb:
+            tb[1].handlers[0].body.append(
+                ast.If(
+                    test=ast.Compare(
+                        left=ast.Subscript(
+                            value=ast.Attribute(
+                                value=ast.Name(id=en), 
+                                attr='args'
+                            ), 
+                            slice=ast.Constant(value=0)
+                        ), 
+                        ops=[ast.Eq()], 
+                        comparators=[ast.Constant(value=1)]
+                    ), 
+                    body=[i], 
+                    orelse=[]
+                )
+            )
+        tb[1].handlers[0].body.extend(junk(en, len(olb) + 1))
+        node.body = [
+            ast.Assign(
+                targets=[ast.Name(id=var)], 
+                value=ast.Constant(value=0), 
+                lineno=None
+            )
+        ] + tb
+        return node
+    def on(node):
+        if isinstance(node, ast.FunctionDef):
+            return _bl(node)
+        return node
+    new_body = []
+    for node in tree.body:
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            new_body.append(on(node))
+        elif isinstance(node, (ast.Assign, ast.AugAssign, ast.AnnAssign)):
+            new_body.extend(bl([node]))
+        elif isinstance(node, ast.Expr):
+            new_body.extend(bl([node]))
+        else:
+            new_body.append(node)
+    tree.body = new_body
+    return tree
 
 
-                                    if {obfint(randomint())}<{obfint(randomint())}:
-
-
-
-                                        [{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()(),{rd()}()()()()()]  
-                except:
-                    {rd()} = {obfint(1)}
-
-                    {rd()} = {obfint(2)}
-
-                    {rd()} = {obfint(3)}
-
-                    {rd()} = {obfint(4)}
-
-                    {rd()} = {obfint(5)}
-
-
-                {_wt} = 0
-                while {_wt} != 2:
-                    {_wt} += 1
-                    try:
-                        {_str}("0/0")
-                    except ZeroDivisionError as {_exp}:
-                        if {_exp}.args[0] == {obfint(100)}:
-                            {_str}({obfstr("str('dat')")})
-
-"""
+def __moreobf(x):
+    return ast.unparse(_moreobf(ast.parse(x)))
 
 def fm(node: ast.JoinedStr) -> ast.Call:
     return ast.Call(
@@ -290,51 +423,7 @@ def rename_function(node, ol, nn):
         elif isinstance(i, ast.Name) and i.id == ol:
             i.id = nn
     return node
-def random_if_else():
-    global sl
-    global moreobf
-    global txp
-    if moreobf.upper() == "Y":
-        txp = txp
-    else:
-        txp = ""
-    variables = [rd() for i in range(sl)] 
-    code_blocks = []
-    for var in variables:
-        code_blocks.append(
-            ast.If(
-                test=ast.Compare(
-                    left=ast.Constant(value=int(randomint()), kind=None),
-                    ops=[ast.Lt()],
-                    comparators=[ast.Constant(value=int(randomint()), kind=None)],
-                ),
-                body=[
-                ast.parse(txp),
-            ast.Assign(
-                lineno=0,
-                col_offset=0,
-                targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[randomint(), randomint()], kind=None),
-            ),
-            ast.Assign(
-                lineno=0,
-                col_offset=0,
-                targets=[ast.Name(id=rd(), ctx=ast.Store())],
-                value=ast.Constant(value=[rd(), rd()], kind=None),
-            ),
 
-                    ast.Assign(
-                        lineno=0,
-                        col_offset=0,
-                        targets=[ast.Name(id=var, ctx=ast.Store())],
-                        value=ast.Constant(value=randomint(), kind=None),
-                    )
-                ],
-                orelse=[]
-            )
-        )
-
-    return code_blocks
 def random_match_case():
     var1 = ast.Constant(value=randomint(), kind=None)
     var2 = ast.Constant(value=randomint(), kind=None)
@@ -401,7 +490,7 @@ def trycatch(body, loop):
                         body=[j],
                     )
                 ],
-                orelse=[random_if_else()],
+                orelse=[],
                 finalbody=[],
             )
             j.body.append(
@@ -486,32 +575,29 @@ print(f'{purple} {banner}')
 
 
 _file = input(" ENTER FILE: ")
-print()
 while True:
     try:
         with open(_file, "r", encoding="utf8") as file:
             code = file.read()
         break
     except FileNotFoundError:
-        print()
+
         _file = input(" ENTER FILE AGAIN (file not found): ")
-        print()
+        
 
 while True:
     try:
         mode = int(input(" ENTER MODE: "))
-        print()
         break
     except ValueError:
         pass
-sl = int(input(" COUNT VAR U WANT SPAM : "))
-
-print()
 moreobf = input(" DO YOU WANT MORE OBF? (y/n): ")
-print()
 method = input(" DO YOU WANT COMPILE? (y/n): ")
-
-
+#code = ast.unparse(_moreobf(ast.parse(code)))
+check = 0
+if moreobf.upper() == "Y":
+    code = __moreobf(code)
+    check = 5
 checkver = f"""
 import sys
 if '{sys.version[0]+sys.version[1]+sys.version[2]+sys.version[3]}' not in sys.version:
@@ -541,6 +627,9 @@ for i in range(mode):
 
 if method.upper() != "Y":
     code = var + code
+    if check == 5:
+        __moreobf(code)
+
 else:
     code = ANTI_PYCDC + code
     code = marshal.dumps(compile(code, "", "exec"))
