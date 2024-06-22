@@ -36,10 +36,10 @@ def randomint():
 def _chrobf(x):
     return ord(x) + 0xFF78FF
 
-
 def obfstr(v):
     global _join
     global _hexrun
+    global obfint
     if v == "":
         return f"''"
     else:
@@ -47,9 +47,48 @@ def obfstr(v):
         r = list(v)
         for i in range(len(r)):
             x.append(_chrobf(r[i]))
-
-        _str_ = f"""(lambda  : (lambda : (lambda : {_join}(({_hexrun}({_lambda}) for {_lambda} in {x})))())())()"""
+        _str_ = f"(lambda  : (lambda : (lambda : {_join}(( {_list}({_map}({_hexrun}, {x})) )))())())()"
         return _str_
+
+import random
+"""
+def obfstr(string):
+    keys = []
+    magic = random.randint(1000000, 9999999)
+    
+    for char in string:
+        logic = random.randint(1, 4)
+        if logic == 1:
+            logic = '+'
+        elif logic == 2:
+            logic = '*'
+        elif logic == 3:
+            logic = '<<'
+        else:
+            logic = '^'
+        
+        key = ord(char)
+        key2 = magic
+        
+        if logic == "^":
+            key3 = ~key ^ ~magic
+            keys.append(f"(lambda: chr({key2} ^ {key3}))()")
+        elif logic == "<<":
+            magic = random.randint(1, 19)
+            key3 = key << magic
+            PT = ">>"
+            keys.append(f"(lambda: chr({key3} {PT} {magic}))()")
+        else:
+            if logic == "+":
+                PT = "-"
+            else:
+                PT = "//"
+            key3 = eval(f"{key} {logic} {magic}")
+            keys.append(f"(lambda: chr({key3} {PT} {key2}))()")
+    
+    return f"(lambda: ''.join([{', '.join(keys)}]))()"
+
+""" # USE IT IF U WANT POWER STRING
 def _byte(v):
     byte_array = bytearray()
     byte_array.extend(v.to_bytes((v.bit_length() + 7) // 8, 'big'))
@@ -92,6 +131,9 @@ _hexrun = "o2"
 _argshexrun = "h2so3"
 __print = r"tryᅠ"
 __input = r"exceptᅠ"
+_eval = "h2o3"
+_list = "agno4"
+_map = "h3o"
 def unicodeobf(x):
     b = []
     for i in x:
@@ -120,7 +162,12 @@ globals()['{_int}'] =  {varsobf('int')}
 globals()['{_bytes}'] =  {varsobf('bytes')}
 globals()['{_vars}'] =  {varsobf('vars')}
 globals()['{_movdiv}'] =  {varsobf('callable')}
+globals()['{_eval}'] =  {varsobf('eval')}
+globals()['{_list}'] =  {varsobf('list')}
+globals()['{_map}'] =  {varsobf('map')}
+
 globals()['{___import__}'] =  {varsobf('__import__')}
+
 globals()['tryᅠ'] =  {varsobf('print')}
 globals()['exceptᅠ'] =  {varsobf('input')}
 def {_join}(july,*k):
@@ -146,6 +193,11 @@ def c2h6(e):
     for b in br:
         r = r * 256 + b
     return r
+def longlongint(x):
+    ar = []
+    for i in x:
+        ar.append({_eval}(i))
+    return ar
 if {obfint(True)}:
     def {_hexrun}({_argshexrun}):
         {_argshexrun} = {_argshexrun}-0xFF78FF
@@ -350,17 +402,17 @@ def _moreobf(tree):
         if isinstance(node, ast.FunctionDef):
             return _bl(node)
         return node
-    new_body = []
+    nb = []
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            new_body.append(on(node))
+            nb.append(on(node))
         elif isinstance(node, (ast.Assign, ast.AugAssign, ast.AnnAssign)):
-            new_body.extend(bl([node]))
+            nb.extend(bl([node]))
         elif isinstance(node, ast.Expr):
-            new_body.extend(bl([node]))
+            nb.extend(bl([node]))
         else:
-            new_body.append(node)
-    tree.body = new_body
+            nb.append(node)
+    tree.body = nb
     return tree
 
 
@@ -381,6 +433,43 @@ def fm(node: ast.JoinedStr) -> ast.Call:
         keywords=[],
     )
 
+def _syntax(x):
+    def v(node):
+        if node.name:
+            for statement in node.body:
+                ten = ast.Try(
+                    body=[ast.parse(f"{_eval}('0/0')"),ast.parse(f"""if "ngocuyen" == "deptrai":{rd()},{rd()},{rd()},{rd()}\nelse:pass""")],
+                    handlers=[
+                        ast.ExceptHandler(
+                            type=ast.Name(id='ZeroDivisionError', ctx=ast.Load()),
+                            name=None,
+                            body=[z(statement)]
+                        )
+                    ],
+                    orelse=[],
+                    finalbody=[]
+                )
+                node.body[node.body.index(statement)] = ten
+            return node
+    def z(statement):
+        return ast.Try(
+            body=[ast.parse(f"{_eval}('0/0')")],
+            handlers=[
+                ast.ExceptHandler(
+                    type=ast.Name(id='ZeroDivisionError', ctx=ast.Load()),
+                    name=None,
+                    body=[statement]
+                )
+            ],
+            orelse=[ast.Pass()],
+            finalbody=[ast.parse("str(100)")]
+        )
+    tree = ast.parse(x)
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef):
+            v(node)
+    st = ast.unparse(tree)
+    return st
 def obfuscate(node):
     for i in ast.walk(node):
         if isinstance(i, ast.Global):
@@ -478,7 +567,7 @@ def trycatch(body, loop):
     ar = []
     for x in body:
         j = x
-        for _ in range(2): #use 2 if u want rip 
+        for _ in range(1): #use 2 if u want rip 
             j = ast.Try(
                 body=[random_match_case(),
 
@@ -526,7 +615,6 @@ light = Col.light_gray
 purple = Colors.StaticMIX((Col.green, Col.yellow))
 bpurple = Colors.StaticMIX((Col.pink, Col.blue, Col.blue))
 
-
 text = f"""
  ENJULY19 OBFUSCATOR
  POWERFULL AST
@@ -539,7 +627,7 @@ text = f"""
  MODE 2 : MEDIUM (BEST CHOICE) (FULL STRING,INT,BOOL OBF)
  MODE 3 : HIGH (NOT RECOMMEND) (IT IS MEDIUM MODE BUT X2 SPAM)
 
-
+ ANTI HOOKING : BLOCK HOOKING
  COMPILER : WITH MARSHAL(ANTI PYC DECOMPILER),ZLIB,BZ2,BASE64
 """
 
@@ -571,10 +659,27 @@ banner = f"""
 
 banner = Add.Add(text, banner, center=True)
 
-print(f'{purple} {banner}')
+print(Colorate.Diagonal(Colors.DynamicMIX((purple, light)), banner))
+def stage(text: str, symbol: str = 'ENJULY19', col1 = light, col2 = None) -> str:
+    if col2 is None:
+        col2 = light if symbol == 'ENJULY19' else purple
+    return f""" {Col.Symbol(symbol, col1, dark)} {Colorate.Diagonal(Colors.DynamicMIX((purple, light)), text)}{light}"""
+
+v = input
+_v = print
+def input(x):
+    return v(stage(x))
+def print(x,*k):
+    return _v(stage(x),*k)
+
 
 
 _file = input(" ENTER FILE: ")
+
+
+
+
+
 while True:
     try:
         with open(_file, "r", encoding="utf8") as file:
@@ -588,13 +693,18 @@ while True:
 while True:
     try:
         mode = int(input(" ENTER MODE: "))
-        break
+        if mode < 4:
+            break
     except ValueError:
         pass
 moreobf = input(" DO YOU WANT MORE OBF? (y/n): ")
+
+antidebug = input(" DO YOU WANT ANTI DEBUG? (y/n): ")
+
 method = input(" DO YOU WANT COMPILE? (y/n): ")
 #code = ast.unparse(_moreobf(ast.parse(code)))
 check = 0
+code = _syntax(code)
 if moreobf.upper() == "Y":
     code = __moreobf(code)
     check = 5
@@ -619,18 +729,108 @@ author = f"""
         )
     )
 """
+anti = r"""
+import traceback, marshal
 
+ch = set()
+am = {'builtins', '__main__'}
+
+def vv():
+    raise MemoryError('>> GOOD LUCK!! CONMEMAY') from None
+
+def cb(fn):
+    if callable(fn) and fn.__module__ not in am:
+        ch.add(fn.__module__)
+        vv()
+
+def ba(fn):
+    def hi(*args, **kwargs):
+        if args and args[0] in ch:
+            vv()
+        return fn(*args, **kwargs)
+    return hi
+
+def bh():
+    stack = traceback.extract_stack()
+    for frame in stack[:-2]:
+        if frame.filename != __file__:
+            vv()
+
+def ck(fn, md):
+    if callable(fn) and fn.__module__ != md:
+        ch.add(md)
+        raise ImportError(f'>> Detect [{fn.__name__}] call [{md}] ! <<') from None
+
+def ic(md, nf):
+    module = __import__(md)
+    funcs = nf if isinstance(nf, list) else [nf]
+    [ck(getattr(module, func, None), md) for func in funcs]
+
+def lf(val, xy):
+    return callable(val) and xy and val.__module__ != xy.__name__
+
+def kt(lo):
+    if any(lf(val, xy) for val, xy in lo):
+        vv()
+
+def ct(md, nf):
+    module = __import__(md)
+    func = getattr(module, nf, None)
+    if func is None:
+        vv()
+    tg = type(func)
+    def cf(func):
+        if type(func) != tg:
+            vv()
+    cf(func)
+    return func
+
+def ic_type(md, nf):
+    func = ct(md, nf)
+    ck(func, md)
+
+def nc():
+    __import__('sys').settrace(lambda *args, **keys: None)
+    __import__('sys').modules['marshal'] = None
+    __import__('sys').modules['marshal'] = type(__import__('sys'))('marshal')
+    __import__('sys').modules['marshal'].loads = marshal.loads
+
+def sc():
+    nk = {
+        'marshal': 'loads'
+    }
+    [ic_type(md, nf) for md, nf in nk.items()]
+
+    lo = [
+        (__import__('marshal').loads, marshal)
+    ]
+    kt(lo)
+    nc()
+
+sc()
+bh()
+"""
+if antidebug.upper() == "Y":
+    code = anti+code
 
 for i in range(mode):
     code = obf(code)
-# nah im lazy ast to detect print
+
 
 if method.upper() != "Y":
     code = var + code
     if check == 5:
-        __moreobf(code)
+        try:
+            code = __moreobf(code)
+        except:
+            code = __moreobf(code)
 
 else:
+    if check == 5:
+        try:
+            code = __moreobf(code)
+        except:
+            code = __moreobf(code)
     code = ANTI_PYCDC + code
     code = marshal.dumps(compile(code, "", "exec"))
     code = zlib.compress(code)
@@ -645,6 +845,7 @@ else:
     _i = "in"
     _t = rd()
     code = author + var + f"""
+
 def bytecode():
     ngocuyencoder = globals().update
     if True:
@@ -674,6 +875,7 @@ try:
     _en+_july+_birth+__19)))))
 except Exception as e:
     print(e)
+
 """
 open("enjuly-" + _file, "w", encoding="utf8").write(str(code))
 print(" Save in ", "enjuly-" + _file)
