@@ -474,6 +474,8 @@ def obfuscate(node):
     for i in ast.walk(node):
         if isinstance(i, ast.Global):
             continue
+        if isinstance(i, ast.Nonlocal):
+            continue
         for f, v in ast.iter_fields(i):
             if isinstance(v, list):
                 ar = []
