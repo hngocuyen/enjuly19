@@ -231,15 +231,17 @@ else:"enjuly19"
 """
 
 
+for i in range(5000):
+    antipycdc += f"你器(你器(你器(你器(你器(你器('')))))),"
+antipycdc = "try:ngocuyencoder=[" + antipycdc + "]\nexcept:pass"
 ANTI_PYCDC = f"""
+def 你器(你):
+    return 你
 try:pass
 except:pass
-else:pass
-finally:int(2008-2006)
-try:
-    def ___(__, _: str, ngocuyen = True, deptrai = True) -> None:pass
-except:pass
 finally:pass
+{antipycdc}
+finally:int(2008-2006)
 """
 
 import ast
