@@ -230,7 +230,7 @@ if {obfint(True)}:
 else:"enjuly19"
 """
 
-
+antipycdc = ''
 for i in range(5000):
     antipycdc += f"你器(你器(你器(你器(你器(你器('')))))),"
 antipycdc = "try:ngocuyencoder=[" + antipycdc + "]\nexcept:pass"
