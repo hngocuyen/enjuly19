@@ -3,13 +3,13 @@
 
 obf only for python3.10 and above
 warning : 
-dont use a fake enjuly19 (maybe it have malwalre)
+dont use a fake enjuly19 (maybe it have malware)
 
 https://github.com/xspoilt-dev/Cryptonite 
 
 https://github.com/zrsx/PYMEOMEO
 
-i hate middle eastern guys 
+i hate middle eastern guys lol
 
 
 UNOBF : 
