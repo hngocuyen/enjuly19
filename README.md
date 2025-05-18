@@ -6,9 +6,9 @@ obf only for python3.10 and above
 warning : 
 dont use a fake enjuly19 (maybe it have malware)
 
-https://github.com/xspoilt-dev/Cryptonite 
+> https://github.com/xspoilt-dev/Cryptonite (fake)
 
-https://github.com/zrsx/PYMEOMEO
+> https://github.com/zrsx/PYMEOMEO (fake)
 
 i hate middle eastern guys lol
 
