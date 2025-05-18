@@ -2,6 +2,15 @@
 999% powerfull ast obf by ngocuyencoder
 
 obf only for python3.10 and above
+warning : 
+dont use a fake enjuly19 (maybe it have malwalre)
+
+https://github.com/xspoilt-dev/Cryptonite 
+
+https://github.com/zrsx/PYMEOMEO
+
+i hate middle eastern guys 
+
 
 UNOBF : 
 ```py
