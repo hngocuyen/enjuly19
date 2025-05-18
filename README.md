@@ -2,6 +2,7 @@
 999% powerfull ast obf by ngocuyencoder
 
 obf only for python3.10 and above
+
 warning : 
 dont use a fake enjuly19 (maybe it have malware)
 
